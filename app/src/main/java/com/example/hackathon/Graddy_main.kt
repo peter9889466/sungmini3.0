@@ -31,9 +31,11 @@ class Graddy_main : AppCompatActivity() {
             Snackbar.make(view, "스터디 모집 플랫폼", Snackbar.LENGTH_LONG)
                 .setAction("확인", null).show()
         }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -44,18 +46,13 @@ class Graddy_main : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // View Binding을 사용한다고 가정
-        // binding.bottomNavView는 XML에 정의된 BottomNavigationView를 "호출" (참조)하는 것입니다.
+        // BottomNavigationView 설정
         val bottomNavView: BottomNavigationView = binding.bottomNavView
 
-        // NavController 가져오기
-        val bottomNavController = findNavController(R.id.fab)
-
-        // "호출"한 bottomNavView 객체를 사용하여 NavController와 연결
-        bottomNavView.setupWithNavController(bottomNavController)
-
-        // 이제 bottomNavView는 화면에 보여지고, 탭 클릭 시 navController를 통해 화면 전환을
-
+        // 수정된 부분: 이미 선언된 navController를 재사용
+        // 기존의 잘못된 코드: val bottomNavController = findNavController(R.id.fab)
+        // 올바른 코드: 같은 NavController 사용
+        bottomNavView.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
