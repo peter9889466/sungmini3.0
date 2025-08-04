@@ -26,14 +26,14 @@ class Graddy_main : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarGraddyMain.toolbar)
 
-        binding.appBarGraddyMain.fab.setOnClickListener { view ->
+        binding.appBarGraddyMain.toolbar.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null)
                 .setAnchorView(R.id.fab).show()
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav)
+        val navController = findNavController(R.id.fab)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -52,7 +52,7 @@ class Graddy_main : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav)
+        val navController = findNavController(R.id.fab)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
