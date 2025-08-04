@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hackathon.databinding.ActivityGraddyMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class Graddy_main : AppCompatActivity() {
 
@@ -42,6 +43,19 @@ class Graddy_main : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        // View Binding을 사용한다고 가정
+        // binding.bottomNavView는 XML에 정의된 BottomNavigationView를 "호출" (참조)하는 것입니다.
+        val bottomNavView: BottomNavigationView = binding.bottomNavView
+
+        // NavController 가져오기
+        val bottomNavController = findNavController(R.id.fab)
+
+        // "호출"한 bottomNavView 객체를 사용하여 NavController와 연결
+        bottomNavView.setupWithNavController(bottomNavController)
+
+        // 이제 bottomNavView는 화면에 보여지고, 탭 클릭 시 navController를 통해 화면 전환을
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
