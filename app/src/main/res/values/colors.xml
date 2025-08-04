@@ -2,4 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- 앱 메인 컬러 -->
+    <color name="main_beige">#FFF3D2</color>
+    <color name="point_lavender">#8B85E9</color>
+
+    <!-- 추가 컬러 -->
+    <color name="light_beige">#FFFBF0</color>
+    <color name="dark_lavender">#7B75D9</color>
+    <color name="text_primary">#333333</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_tertiary">#999999</color>
+    <color name="button_text">#FFFFFF</color>
+    <color name="error_red">#FF6B6B</color>
+    <color name="tag_background">#E8E5FF</color>
+    <color name="card_shadow">#1A000000</color>
+    <color name="divider">#E0E0E0</color>
 </resources>
