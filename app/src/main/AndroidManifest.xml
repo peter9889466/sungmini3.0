@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hackathon">
         <activity
-            android:name=".MainActivity"
+            android:name=".Graddy_main"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
