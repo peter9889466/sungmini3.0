@@ -11,8 +11,20 @@
     <string name="menu_mypage">마이페이지</string>
     <string name="menu_profileedit">회원정보 수정</string>
     <string name="menu_withdraw">회원탈퇴</string>
-        <string name="title_activity_graddy_nav">Graddy_nav</string>
+    <string name="title_activity_graddy_nav">Graddy_nav</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_addstudy">AddStudy</string>
+    <string name="title_search">Search</string>
+
+    <!-- 스터디 카테고리 -->
+    <string-array name="study_categories">
+        <item>프로그래밍</item>
+        <item>알고리즘</item>
+        <item>웹 개발</item>
+        <item>앱 개발</item>
+        <item>데이터 사이언스</item>
+        <item>AI/머신러닝</item>
+        <item>디자인</item>
+        <item>기타</item>
+    </string-array>
 </resources>
