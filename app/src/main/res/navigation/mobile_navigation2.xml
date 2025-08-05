@@ -21,7 +21,21 @@
         android:id="@+id/botSearch"
         android:name="com.example.hackathon.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search_to_study_detail"
+            app:destination="@id/studyDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/studyDetailFragment"
+        android:name="com.example.hackathon.ui.studydetail.StudyDetailFragment"
+        android:label="스터디 상세"
+        tools:layout="@layout/fragment_study_detail">
+        <argument
+            android:name="studyId"
+            app:argType="string" />
+    </fragment>
 
     <!-- 사이드 메뉴 Fragment들 -->
     <fragment
@@ -47,7 +61,7 @@
         android:id="@+id/nav_withdraw"
         android:name="com.example.hackathon.ui.withdraw.WithdrawFragment"
         android:label="@string/menu_withdraw"
-        tools:layout="@layout/fragment_withdraw" >
+        tools:layout="@layout/fragment_withdraw">
         <action
             android:id="@+id/action_nav_withdraw_to_botHome"
             app:destination="@id/botHome" />
@@ -68,7 +82,6 @@
             android:id="@+id/action_nav_login_to_nav_join"
             app:destination="@id/nav_join" />
     </fragment>
-
 
 
 </navigation>
