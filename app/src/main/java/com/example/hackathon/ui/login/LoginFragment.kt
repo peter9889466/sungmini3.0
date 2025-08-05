@@ -32,22 +32,22 @@ class LoginFragment : Fragment() {
 
         // 로그인 버튼 클릭 시
         binding.btnLogin.setOnClickListener {
-            val email = binding.loginId.text.toString()
-            val phone = binding.loginPw.text.toString()
+            val id = binding.loginId.text.toString()
+            val pw = binding.loginPw.text.toString()
 
-            if (email.isBlank() || phone.isBlank()) {
+            if (id.isBlank() || pw.isBlank()) {
                 Toast.makeText(requireContext(), "모든 항목을 입력하세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (email == validEmail && phone == validPhone) {
-                Toast.makeText(requireContext(), "로그인 성공: $email", Toast.LENGTH_LONG).show()
+            if (id == validEmail && pw == validPhone) {
+                Toast.makeText(requireContext(), "로그인 성공: $id", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(requireContext(), "로그인 실패!", Toast.LENGTH_SHORT).show()
             }
         }
 
-//        // "회원정보가 없으신가요?" 클릭 시 회원가입 화면으로 이동
+        // "회원정보가 없으신가요?" 클릭 시 회원가입 화면으로 이동
 //        binding.textView2.setOnClickListener {
 //            findNavController().navigate(R.id.action_nav_login_to_nav_join)
 //        }

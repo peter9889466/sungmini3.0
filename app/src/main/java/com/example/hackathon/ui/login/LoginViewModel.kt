@@ -10,15 +10,15 @@ class LoginViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
-    private val _userEmail = MutableLiveData<String>()
-    val userEmail: LiveData<String> = _userEmail
+    private val _userId = MutableLiveData<String>()
+    val userId: LiveData<String> = _userId
 
-    private val _userPhone = MutableLiveData<String>()
-    val userPhone: LiveData<String> = _userPhone
+    private val _userPw = MutableLiveData<String>()
+    val userPw: LiveData<String> = _userPw
 
-    fun setUserInfo(email: String, phone: String) {
-        _userEmail.value = email
-        _userPhone.value = phone
+    fun setUserInfo(id: String, pw: String) {
+        _userId.value = id
+        _userPw.value = pw
     }
 
     private val _isLoading = MutableLiveData<Boolean>()
