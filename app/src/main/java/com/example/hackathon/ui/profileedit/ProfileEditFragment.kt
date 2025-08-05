@@ -47,8 +47,8 @@ class ProfileEditFragment : Fragment() {
     private fun setupViews() {
         val nameEditText: EditText = binding.root.findViewById(R.id.edit_name)
         val emailEditText: EditText = binding.root.findViewById(R.id.edit_email)
-        val phoneEditText: EditText = binding.root.findViewById(R.id.edit_phone)
-        val saveButton: Button = binding.root.findViewById(R.id.btn_save_profile)
+        val phoneEditText: EditText = binding.root.findViewById(R.id.edit_pw)
+        val saveButton: Button = binding.root.findViewById(R.id.btn_save)
         val cancelButton: Button = binding.root.findViewById(R.id.btn_cancel)
 
         // 저장 버튼 클릭
@@ -77,7 +77,7 @@ class ProfileEditFragment : Fragment() {
 
         binding.root.findViewById<EditText>(R.id.edit_name)?.setText(currentName)
         binding.root.findViewById<EditText>(R.id.edit_email)?.setText(currentEmail)
-        binding.root.findViewById<EditText>(R.id.edit_phone)?.setText(currentPhone)
+        binding.root.findViewById<EditText>(R.id.edit_pw)?.setText(currentPhone)
     }
 
     private fun validateInput(name: String, email: String): Boolean {

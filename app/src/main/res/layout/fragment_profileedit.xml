@@ -14,7 +14,7 @@
 
         <!-- 헤더 -->
         <TextView
-            android:id="@+id/text_profile_edit"
+            android:id="@+id/text_join"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -38,7 +38,7 @@
             app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_profile_edit">
+            app:layout_constraintTop_toBottomOf="@+id/text_join">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                     app:hintTextColor="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_phone"
+                        android:id="@+id/edit_pw"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
@@ -146,7 +146,7 @@
                 app:cornerRadius="12dp" />
 
             <Button
-                android:id="@+id/btn_save_profile"
+                android:id="@+id/btn_save"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="8dp"
