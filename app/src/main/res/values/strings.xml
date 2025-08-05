@@ -17,6 +17,7 @@
     <string name="title_home">Home</string>
     <string name="title_addstudy">AddStudy</string>
     <string name="title_search">Search</string>
+    <string name="id">ID</string>
 
     <!-- 스터디 카테고리 -->
     <string-array name="study_categories">

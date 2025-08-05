@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:hint="이메일"
+                    android:hint="@string/id"
                     app:boxBackgroundColor="@color/light_beige"
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
@@ -67,7 +67,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:inputType="textEmailAddress"
+                        android:hint="@string/id"
+                        android:inputType="text"
                         android:textColor="@color/text_primary"
                         android:textSize="16sp" />
 
@@ -91,7 +92,8 @@
                         android:id="@+id/login_pw"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="phone"
+                        android:hint="비밀번호"
+                        android:inputType="textPassword"
                         android:textColor="@color/text_primary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
