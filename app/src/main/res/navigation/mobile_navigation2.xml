@@ -9,14 +9,7 @@
         android:id="@+id/botHome"
         android:name="com.example.hackathon.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_botHome_to_nav_join"
-            app:destination="@id/nav_join" />
-        <action
-            android:id="@+id/action_botHome_to_nav_login"
-            app:destination="@id/nav_login" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/botNav"
