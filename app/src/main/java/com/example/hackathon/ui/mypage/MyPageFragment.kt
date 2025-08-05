@@ -34,6 +34,8 @@ class MyPageFragment : Fragment() {
         _binding = FragmentMypageBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        android.util.Log.d("MyPageFragment", "MyPageFragment 생성됨")
+
         // SharedPreferences 초기화
         sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
 

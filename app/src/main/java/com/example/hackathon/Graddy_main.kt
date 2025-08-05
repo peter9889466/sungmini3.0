@@ -40,14 +40,15 @@ class Graddy_main : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_mypage, R.id.nav_profile_edit, R.id.nav_withdraw
+                R.id.nav_mypage, R.id.nav_profile_edit, R.id.nav_withdraw,
+                R.id.botHome, R.id.botNav, R.id.botSearch
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
         // BottomNavigationView 설정
-        val bottomNavView: BottomNavigationView = binding.bottomNavView
+        val bottomNavView: BottomNavigationView = binding.appBarGraddyMain.bottomNavView
 
         // 수정된 부분: 이미 선언된 navController를 재사용
         // 기존의 잘못된 코드: val bottomNavController = findNavController(R.id.fab)
