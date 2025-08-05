@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/botHome"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@null" />
+
+    <item
+        android:id="@+id/botNav"
+        android:icon="@drawable/plus"
+        android:title="@null" />
+
+    <item
+        android:id="@+id/botSearch"
+        android:icon="@drawable/search"
+        android:title="@null" />
+
+</menu>

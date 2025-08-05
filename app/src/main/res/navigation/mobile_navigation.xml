@@ -3,23 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_mypage">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.hackathon.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_mypage"
+        android:name="com.example.hackathon.ui.mypage.MyPageFragment"
+        android:label="@string/menu_mypage"
+        tools:layout="@layout/fragment_mypage">
+        <action
+            android:id="@+id/action_nav_mypage_to_nav_profile_edit"
+            app:destination="@id/nav_profile_edit" />
+        <action
+            android:id="@+id/action_nav_mypage_to_nav_withdraw"
+            app:destination="@id/nav_withdraw" />
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.hackathon.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_profile_edit"
+        android:name="com.example.hackathon.ui.profileedit.ProfileEditFragment"
+        android:label="@string/menu_profileedit"
+        tools:layout="@layout/fragment_profileedit" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.hackathon.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_withdraw"
+        android:name="com.example.hackathon.ui.withdraw.WithdrawFragment"
+        android:label="@string/menu_withdraw"
+        tools:layout="@layout/fragment_withdraw" />
 </navigation>
