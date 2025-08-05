@@ -12,7 +12,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Hackathon.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Hackathon.AppBarOverlay" parent="ThemeOverlay.Material3.ActionBar">
+        <item name="colorControlNormal">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
+    </style>
 
-    <style name="Theme.Hackathon.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.Hackathon.PopupOverlay" parent="ThemeOverlay.Material3.Light" />
 </resources>

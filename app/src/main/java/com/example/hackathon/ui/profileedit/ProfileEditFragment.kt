@@ -45,20 +45,24 @@ class ProfileEditFragment : Fragment() {
     }
 
     private fun setupViews() {
+        val idEditText: EditText = binding.root.findViewById(R.id.edit_id)
+        val passwordEditText: EditText = binding.root.findViewById(R.id.edit_password)
         val nameEditText: EditText = binding.root.findViewById(R.id.edit_name)
-        val emailEditText: EditText = binding.root.findViewById(R.id.edit_email)
-        val phoneEditText: EditText = binding.root.findViewById(R.id.edit_pw)
+        val nicknameEditText: EditText = binding.root.findViewById(R.id.edit_nickname)
+        val phoneEditText: EditText = binding.root.findViewById(R.id.edit_phone)
         val saveButton: Button = binding.root.findViewById(R.id.btn_save)
         val cancelButton: Button = binding.root.findViewById(R.id.btn_cancel)
 
         // 저장 버튼 클릭
         saveButton?.setOnClickListener {
+            val id = idEditText?.text.toString().trim()
+            val password = passwordEditText?.text.toString().trim()
             val name = nameEditText?.text.toString().trim()
-            val email = emailEditText?.text.toString().trim()
+            val nickname = nicknameEditText?.text.toString().trim()
             val phone = phoneEditText?.text.toString().trim()
 
-            if (validateInput(name, email)) {
-                saveUserInfo(name, email, phone)
+            if (validateInput(id, password, name, nickname)) {
+                saveUserInfo(id, password, name, nickname, phone)
                 Toast.makeText(context, "프로필이 수정되었습니다.", Toast.LENGTH_SHORT).show()
                 findNavController().navigateUp()
             }
@@ -71,31 +75,45 @@ class ProfileEditFragment : Fragment() {
     }
 
     private fun loadCurrentUserInfo() {
+        val currentId = sharedPreferences.getString("user_id", "")
+        val currentPassword = sharedPreferences.getString("user_password", "")
         val currentName = sharedPreferences.getString("user_name", "")
-        val currentEmail = sharedPreferences.getString("user_email", "")
+        val currentNickname = sharedPreferences.getString("user_nickname", "")
         val currentPhone = sharedPreferences.getString("user_phone", "")
 
+        binding.root.findViewById<EditText>(R.id.edit_id)?.setText(currentId)
+        binding.root.findViewById<EditText>(R.id.edit_password)?.setText(currentPassword)
         binding.root.findViewById<EditText>(R.id.edit_name)?.setText(currentName)
-        binding.root.findViewById<EditText>(R.id.edit_email)?.setText(currentEmail)
-        binding.root.findViewById<EditText>(R.id.edit_pw)?.setText(currentPhone)
+        binding.root.findViewById<EditText>(R.id.edit_nickname)?.setText(currentNickname)
+        binding.root.findViewById<EditText>(R.id.edit_phone)?.setText(currentPhone)
     }
 
-    private fun validateInput(name: String, email: String): Boolean {
+    private fun validateInput(id: String, password: String, name: String, nickname: String): Boolean {
+        if (id.isEmpty()) {
+            Toast.makeText(context, "ID를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (password.isEmpty()) {
+            Toast.makeText(context, "비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show()
+            return false
+        }
         if (name.isEmpty()) {
             Toast.makeText(context, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show()
             return false
         }
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(context, "올바른 이메일을 입력해주세요.", Toast.LENGTH_SHORT).show()
+        if (nickname.isEmpty()) {
+            Toast.makeText(context, "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
     }
 
-    private fun saveUserInfo(name: String, email: String, phone: String) {
+    private fun saveUserInfo(id: String, password: String, name: String, nickname: String, phone: String) {
         with(sharedPreferences.edit()) {
+            putString("user_id", id)
+            putString("user_password", password)
             putString("user_name", name)
-            putString("user_email", email)
+            putString("user_nickname", nickname)
             putString("user_phone", phone)
             apply()
         }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_beige"
-    tools:context=".ui.profileedit.ProfileEditFragment">
+    tools:context=".SignupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,11 +14,11 @@
 
         <!-- 헤더 -->
         <TextView
-            android:id="@+id/text_join"
+            android:id="@+id/text_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="회원정보 수정"
+            android:text="회원가입"
             android:textAlignment="center"
             android:textColor="@color/text_primary"
             android:textSize="24sp"
@@ -38,7 +38,7 @@
             app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_join">
+            app:layout_constraintTop_toBottomOf="@+id/text_signup">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     app:hintTextColor="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_id"
+                        android:id="@+id/signup_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -85,7 +85,7 @@
                     app:hintTextColor="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_password"
+                        android:id="@+id/signup_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
@@ -109,7 +109,7 @@
                     app:hintTextColor="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_name"
+                        android:id="@+id/signup_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
@@ -133,7 +133,7 @@
                     app:hintTextColor="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_nickname"
+                        android:id="@+id/signup_nickname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -157,7 +157,7 @@
                     app:hintTextColor="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/edit_phone"
+                        android:id="@+id/signup_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
@@ -194,13 +194,13 @@
                 app:cornerRadius="12dp" />
 
             <Button
-                android:id="@+id/btn_save"
+                android:id="@+id/btn_signup"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/point_lavender"
-                android:text="저장"
+                android:text="회원가입"
                 android:textColor="@color/button_text"
                 android:textSize="16sp"
                 android:textStyle="bold"

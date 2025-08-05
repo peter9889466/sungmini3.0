@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/main_beige"
+            app:titleTextColor="@color/black"
             app:popupTheme="@style/Theme.Hackathon.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
