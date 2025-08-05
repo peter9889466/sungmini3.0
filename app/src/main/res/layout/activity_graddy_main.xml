@@ -23,6 +23,41 @@
         android:background="#FFF3D2"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_graddy_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer">
+
+        <!-- 내부에 LinearLayout을 사용해 상단 메뉴와 하단 버튼 구분 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- 상단 빈 공간 조절 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.85" />
+
+            <!-- 버튼 -->
+            <Button
+                android:id="@+id/btn_withdraw"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:backgroundTint="@color/error_red"
+                android:text="로그아웃"
+                android:textColor="@color/button_text"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp" />
+
+            <!-- 버튼 아래 빈 공간 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.02" />
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
