@@ -8,38 +8,49 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.hackathon.databinding.FragmentLoginBinding
 import com.example.hackathon.ui.login.LoginViewModel
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
-
     private val binding get() = _binding!!
+
+    // 테스트용 계정 정보
+    private val validEmail = "111"
+    private val validPhone = "111"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val loginViewModel =
-            ViewModelProvider(this).get(LoginViewModel::class.java)
+        val loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // 버튼 클릭 이벤트 처리
+        // 로그인 버튼 클릭 시
         binding.btnLogin.setOnClickListener {
-            val email = binding.loginEmail.text.toString()
-            val password = binding.loginPw.text.toString()
+            val email = binding.loginId.text.toString()
+            val phone = binding.loginPw.text.toString()
 
-            if (email.isBlank() || password.isBlank()) {
+            if (email.isBlank() || phone.isBlank()) {
                 Toast.makeText(requireContext(), "모든 항목을 입력하세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // TODO: 여기서 ViewModel 또는 서버로 데이터 전달 등 처리
-            Toast.makeText(requireContext(), "로그인 성공: $email", Toast.LENGTH_LONG).show()
+            if (email == validEmail && phone == validPhone) {
+                Toast.makeText(requireContext(), "로그인 성공: $email", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "로그인 실패!", Toast.LENGTH_SHORT).show()
+            }
         }
+
+//        // "회원정보가 없으신가요?" 클릭 시 회원가입 화면으로 이동
+//        binding.textView2.setOnClickListener {
+//            findNavController().navigate(R.id.action_nav_login_to_nav_join)
+//        }
 
         return root
     }

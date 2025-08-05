@@ -27,11 +27,13 @@ class JoinFragment : Fragment() {
 
         // 버튼 클릭 이벤트 처리
         binding.btnJoin.setOnClickListener {
+            val id = binding.joinId.text.toString()
+            val pw = binding.joinPw.text.toString()
             val name = binding.joinName.text.toString()
-            val email = binding.joinEmail.text.toString()
+            val email = binding.joinNick.text.toString()
             val password = binding.joinPw.text.toString()
 
-            if (name.isBlank() || email.isBlank() || email.isBlank() || password.isBlank()) {
+            if (id.isBlank() || pw.isBlank() || name.isBlank() || email.isBlank() || password.isBlank()) {
                 Toast.makeText(requireContext(), "모든 항목을 입력하세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
