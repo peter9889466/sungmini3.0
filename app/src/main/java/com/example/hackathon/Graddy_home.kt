@@ -26,11 +26,5 @@ class Graddy_home : AppCompatActivity() {
         val binding = FragmentHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        queue = Volley.newRequestQueue(this)
-        val rvGraddy = findViewById<RecyclerView>(R.id.rvGraddy)
-        rvGraddy.layoutManager = GridLayoutManager(this, 2)
-
-
-
     }
 }

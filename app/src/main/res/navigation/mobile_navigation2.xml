@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_nav_mypage_to_nav_withdraw"
             app:destination="@id/nav_withdraw" />
+        <action
+            android:id="@+id/action_mypage_to_study_detail"
+            app:destination="@id/studyDetailFragment" />
     </fragment>
 
     <fragment
