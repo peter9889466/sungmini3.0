@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="8dp">
 
                     <TextView
                         android:id="@+id/text_study_category"
@@ -112,6 +112,16 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+                <!-- 스터디 기간 -->
+                <TextView
+                    android:id="@+id/text_study_period"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="기간: 2024.01.01 ~ 2024.12.31"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
 
                 <!-- 구분선 -->
                 <View

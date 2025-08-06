@@ -5,5 +5,7 @@ data class Study(
     val name: String,
     val description: String,
     val category: String,
-    val creator: String
+    val creator: String,
+    val startDate: String = "",
+    val endDate: String = ""
 )

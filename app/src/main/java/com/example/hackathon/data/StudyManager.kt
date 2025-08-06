@@ -3,6 +3,7 @@ package com.example.hackathon.data
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.hackathon.ui.search.Study
+import com.example.hackathon.utils.DateUtils
 
 class StudyManager(private val context: Context) {
     
@@ -110,6 +111,8 @@ class StudyManager(private val context: Context) {
             remove("study_${studyId}_description")
             remove("study_${studyId}_category")
             remove("study_${studyId}_creator")
+            remove("study_${studyId}_start_date")
+            remove("study_${studyId}_end_date")
             remove("study_${studyId}_created_time")
             
             // 댓글도 삭제
@@ -207,9 +210,11 @@ class StudyManager(private val context: Context) {
             val description = studyPrefs.getString("study_${id}_description", "") ?: ""
             val category = studyPrefs.getString("study_${id}_category", "") ?: ""
             val creator = studyPrefs.getString("study_${id}_creator", "") ?: ""
+            val startDate = studyPrefs.getString("study_${id}_start_date", "") ?: ""
+            val endDate = studyPrefs.getString("study_${id}_end_date", "") ?: ""
             
             if (name.isNotEmpty()) {
-                studies.add(Study(id, name, description, category, creator))
+                studies.add(Study(id, name, description, category, creator, startDate, endDate))
             }
         }
         
@@ -245,6 +250,29 @@ class StudyManager(private val context: Context) {
         }
         
         return count
+    }
+    
+    /**
+     * 스터디 기간을 포맷된 문자열로 가져오기
+     */
+    fun getFormattedStudyPeriod(studyId: String): String {
+        val startDate = studyPrefs.getString("study_${studyId}_start_date", "") ?: ""
+        val endDate = studyPrefs.getString("study_${studyId}_end_date", "") ?: ""
+        return DateUtils.formatStudyPeriodSimple(startDate, endDate)
+    }
+    
+    /**
+     * 스터디 시작일 가져오기
+     */
+    fun getStudyStartDate(studyId: String): String {
+        return studyPrefs.getString("study_${studyId}_start_date", "") ?: ""
+    }
+    
+    /**
+     * 스터디 종료일 가져오기
+     */
+    fun getStudyEndDate(studyId: String): String {
+        return studyPrefs.getString("study_${studyId}_end_date", "") ?: ""
     }
 }
 

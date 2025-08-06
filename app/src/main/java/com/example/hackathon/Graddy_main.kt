@@ -52,26 +52,39 @@ class Graddy_main : AppCompatActivity() {
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        
+        // NavController를 먼저 선언하여 전체 스코프에서 사용 가능하도록 함
+        val navController = try {
+            findNavController(R.id.nav_host_fragment_content_main)
+        } catch (e: Exception) {
+            android.util.Log.e("Graddy_main", "NavController 찾기 실패: ${e.message}")
+            return
+        }
 
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.nav_mypage, R.id.nav_profile_edit, R.id.nav_withdraw,
-                R.id.botHome, R.id.botNav, R.id.botSearch
-            ), drawerLayout
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        try {
+            // Passing each menu ID as a set of Ids because each
+            // menu should be considered as top level destinations.
+            appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.nav_mypage, R.id.nav_profile_edit, R.id.nav_withdraw,
+                    R.id.botHome, R.id.botNav, R.id.botSearch
+                ), drawerLayout
+            )
+            setupActionBarWithNavController(navController, appBarConfiguration)
+            navView.setupWithNavController(navController)
+        } catch (e: Exception) {
+            android.util.Log.e("Graddy_main", "네비게이션 설정 오류: ${e.message}")
+        }
 
         // BottomNavigationView 설정
         val bottomNavView: BottomNavigationView = binding.appBarGraddyMain.bottomNavView
 
-        // 수정된 부분: 이미 선언된 navController를 재사용
-        // 기존의 잘못된 코드: val bottomNavController = findNavController(R.id.fab)
-        // 올바른 코드: 같은 NavController 사용
-        bottomNavView.setupWithNavController(navController)
+        // 같은 NavController를 BottomNavigationView에도 연결
+        try {
+            bottomNavView.setupWithNavController(navController)  // ✅ 올바른 변수명 사용
+        } catch (e: Exception) {
+            android.util.Log.e("Graddy_main", "BottomNavigation 설정 오류: ${e.message}")
+        }
         
         // 로그아웃 버튼 설정
         setupLogoutButton()

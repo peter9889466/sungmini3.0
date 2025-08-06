@@ -16,6 +16,7 @@ import com.example.hackathon.data.LeaveResult
 import com.example.hackathon.data.StudyManager
 import com.example.hackathon.data.UserManager
 import com.example.hackathon.databinding.FragmentStudyDetailBinding
+import com.example.hackathon.utils.DateUtils
 
 class StudyDetailFragment : Fragment() {
 
@@ -66,11 +67,16 @@ class StudyDetailFragment : Fragment() {
             val studyDescription = sharedPreferences.getString("study_${id}_description", "")
             val studyCreator = sharedPreferences.getString("study_${id}_creator", "")
             val studyCategory = sharedPreferences.getString("study_${id}_category", "")
+            val startDate = sharedPreferences.getString("study_${id}_start_date", "") ?: ""
+            val endDate = sharedPreferences.getString("study_${id}_end_date", "") ?: ""
 
             binding.textStudyTitle.text = studyName
             binding.textStudyCreator.text = "스터디장: $studyCreator"
             binding.textStudyDescription.text = studyDescription
             binding.textStudyCategory.text = "카테고리: $studyCategory"
+            
+            // 스터디 기간 표시
+            binding.textStudyPeriod.text = DateUtils.formatStudyPeriodSimple(startDate, endDate)
             
             // 멤버 수 표시
             val memberCount = studyManager.getStudyMemberCount(id)
