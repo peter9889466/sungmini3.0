@@ -2,6 +2,7 @@ package com.example.hackathon.ui.withdraw
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,13 +15,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.hackathon.LoginActivity
 import com.example.hackathon.R
+import com.example.hackathon.data.StudyManager
+import com.example.hackathon.data.UserManager
 import com.example.hackathon.databinding.FragmentWithdrawBinding
 
 class WithdrawFragment : Fragment() {
 
     private var _binding: FragmentWithdrawBinding? = null
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var userManager: UserManager
+    private lateinit var studyManager: StudyManager
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -37,8 +42,9 @@ class WithdrawFragment : Fragment() {
         _binding = FragmentWithdrawBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // SharedPreferences 초기화
-        sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        // Manager 초기화
+        userManager = UserManager(requireContext())
+        studyManager = StudyManager(requireContext())
 
         setupViews()
 
@@ -80,9 +86,16 @@ class WithdrawFragment : Fragment() {
     }
 
     private fun showWithdrawConfirmDialog() {
+        val currentUser = userManager.getCurrentUser()
+        val userInfo = if (currentUser != null) {
+            "사용자: ${currentUser.nickname} (${currentUser.userId})"
+        } else {
+            "현재 사용자"
+        }
+        
         AlertDialog.Builder(requireContext())
             .setTitle("회원탈퇴 확인")
-            .setMessage("정말로 탈퇴하시겠습니까?\n탈퇴 후에는 모든 데이터가 삭제되며 복구할 수 없습니다.")
+            .setMessage("정말로 탈퇴하시겠습니까?\n\n$userInfo\n\n탈퇴 후에는 다음 데이터가 모두 삭제됩니다:\n• 개인정보\n• 가입한 스터디 정보\n• 작성한 댓글\n• 생성한 스터디\n\n이 작업은 되돌릴 수 없습니다.")
             .setPositiveButton("탈퇴") { _, _ ->
                 performWithdraw()
             }
@@ -91,17 +104,45 @@ class WithdrawFragment : Fragment() {
     }
 
     private fun performWithdraw() {
-        // 사용자 데이터 삭제
-        with(sharedPreferences.edit()) {
-            clear()
-            apply()
+        val currentUser = userManager.getCurrentUser()
+        if (currentUser == null) {
+            Toast.makeText(context, "로그인 정보를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show()
+            return
         }
 
-        Toast.makeText(context, "회원탈퇴가 완료되었습니다.", Toast.LENGTH_LONG).show()
-        
-        // 로그인 화면으로 이동 (또는 메인 화면)
-        // 실제 앱에서는 로그인 액티비티로 이동해야 함
-        findNavController().popBackStack(R.id.nav_mypage, false)
+        try {
+            // 1. 사용자가 생성한 스터디들 삭제
+            val createdStudies = studyManager.getUserCreatedStudies(currentUser.userId)
+            for (study in createdStudies) {
+                studyManager.deleteStudy(study.id, currentUser.userId)
+            }
+
+            // 2. 가입한 스터디에서 탈퇴
+            val joinedStudies = studyManager.getUserJoinedStudies(currentUser.userId)
+            for (study in joinedStudies) {
+                if (study.creator != currentUser.nickname) { // 본인이 만든 스터디가 아닌 경우만
+                    studyManager.leaveStudy(study.id, currentUser.userId)
+                }
+            }
+
+            // 3. 사용자 계정 삭제
+            val deleteSuccess = userManager.deleteUser(currentUser.userId)
+            
+            if (deleteSuccess) {
+                Toast.makeText(context, "회원탈퇴가 완료되었습니다.", Toast.LENGTH_LONG).show()
+                
+                // 4. 로그인 화면으로 이동
+                val intent = Intent(requireContext(), LoginActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                requireActivity().finish()
+            } else {
+                Toast.makeText(context, "회원탈퇴 처리 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+            }
+            
+        } catch (e: Exception) {
+            Toast.makeText(context, "회원탈퇴 처리 중 오류가 발생했습니다: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {

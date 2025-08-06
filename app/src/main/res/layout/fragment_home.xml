@@ -9,11 +9,19 @@
     android:padding="16dp"
     tools:context=".ui.home.HomeFragment">
 
+    <!-- 캘린더를 제일 위로 이동 -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp" />
+
     <Button
         android:id="@+id/btnToMypage"
-        android:layout_width="359dp"
+        android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#8B85E9"
         android:gravity="center"
         android:text="내 스터디 정보보기"
@@ -21,9 +29,9 @@
         android:textSize="18sp" />
 
     <LinearLayout
-        android:layout_width="359dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/text_border"
         android:orientation="vertical">
 
@@ -49,7 +57,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:background="@drawable/text_border"
         android:orientation="vertical">
 
@@ -71,12 +78,6 @@
             android:text="- 2025.08.04 ~ 2025.08.08"
             android:textSize="16sp" />
     </LinearLayout>
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
 
 
 </LinearLayout>

@@ -24,15 +24,15 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_graddy_main"
-        android:layout_marginBottom="56dp" />
+    <include layout="@layout/content_graddy_main" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_gravity="bottom"
         android:background="?android:attr/windowBackground"
+        android:elevation="8dp"
         app:menu="@menu/bottom_nav_menu" />
 
 
