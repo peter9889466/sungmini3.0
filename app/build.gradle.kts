@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.androidx.mediarouter)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.fragment)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
