@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.hackathon.R
+import com.example.hackathon.data.UserManager
 import com.example.hackathon.databinding.FragmentAddStudyBinding
 
 class AddStudyFragment : Fragment() {
@@ -18,6 +19,7 @@ class AddStudyFragment : Fragment() {
     private var _binding: FragmentAddStudyBinding? = null
     private val binding get() = _binding!!
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var userManager: UserManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +30,7 @@ class AddStudyFragment : Fragment() {
         val root: View = binding.root
 
         sharedPreferences = requireContext().getSharedPreferences("study_prefs", Context.MODE_PRIVATE)
+        userManager = UserManager(requireContext())
         
         Log.d("AddStudyFragment", "AddStudyFragment 생성됨")
         
@@ -67,13 +70,16 @@ class AddStudyFragment : Fragment() {
     private fun createStudy(name: String, description: String, category: String) {
         Log.d("AddStudyFragment", "스터디 생성 - 이름: $name, 설명: $description, 카테고리: $category")
         
-        // 현재 사용자 정보 가져오기
-        val userPrefs = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-        val creatorNickname = userPrefs.getString("user_nickname", "익명")
+        // UserManager를 통해 현재 사용자 정보 가져오기
+        val currentUser = userManager.getCurrentUser()
+        if (currentUser == null) {
+            Toast.makeText(context, "로그인이 필요합니다.", Toast.LENGTH_SHORT).show()
+            return
+        }
         
         // 스터디 정보 저장 (임시로 SharedPreferences 사용)
         val studyId = System.currentTimeMillis().toString() // 임시 ID
-        saveStudyToLocal(studyId, name, description, category, creatorNickname ?: "익명")
+        saveStudyToLocal(studyId, name, description, category, currentUser.nickname)
         
         Toast.makeText(context, "스터디가 생성되었습니다!", Toast.LENGTH_SHORT).show()
         

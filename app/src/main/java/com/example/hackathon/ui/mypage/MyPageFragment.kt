@@ -66,7 +66,7 @@ class MyPageFragment : Fragment() {
         val userName = sharedPreferences.getString("user_name", "사용자")
         val userEmail = sharedPreferences.getString("user_email", "user@example.com")
         
-        binding.textMypage.text = "안녕하세요, ${userName}님!\n이메일: ${userEmail}"
+        binding.textMypage.text = "안녕하세요, ${userName}님!"
     }
 
     override fun onDestroyView() {

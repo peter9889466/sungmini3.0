@@ -40,6 +40,19 @@ class SearchFragment : Fragment() {
 
         return root
     }
+    
+    override fun onResume() {
+        super.onResume()
+        // 다른 페이지에서 돌아올 때만 검색 상태 초기화 (처음 생성될 때는 제외)
+        if (isResumedFromOtherFragment()) {
+            resetSearchState()
+        }
+    }
+    
+    private fun isResumedFromOtherFragment(): Boolean {
+        // Fragment가 이미 생성된 상태에서 다시 보여지는 경우
+        return _binding != null && view != null
+    }
 
     private fun setupRecyclerView() {
         studyAdapter = StudyAdapter { study ->
@@ -102,6 +115,14 @@ class SearchFragment : Fragment() {
         }
         
         return studies
+    }
+
+    private fun resetSearchState() {
+        // 검색창 초기화
+        binding.searchEditText.text?.clear()
+        // 전체 스터디 목록 다시 로드
+        loadAllStudies()
+        Log.d("SearchFragment", "검색 상태 초기화됨")
     }
 
     override fun onDestroyView() {

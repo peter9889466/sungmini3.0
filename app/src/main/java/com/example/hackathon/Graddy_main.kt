@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.hackathon.data.UserManager
 import com.example.hackathon.databinding.ActivityGraddyMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -20,9 +21,21 @@ class Graddy_main : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityGraddyMainBinding
+    private lateinit var userManager: UserManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        userManager = UserManager(this)
+        
+        // 로그인 상태 확인
+        if (!userManager.isLoggedIn()) {
+            // 로그인되지 않은 상태라면 로그인 페이지로 이동
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
 
         binding = ActivityGraddyMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -81,6 +94,9 @@ class Graddy_main : AppCompatActivity() {
     private fun setupLogoutButton() {
         val logoutButton = binding.navView.findViewById<android.widget.Button>(R.id.btn_withdraw)
         logoutButton?.setOnClickListener {
+            // UserManager를 통한 로그아웃
+            userManager.logoutUser()
+            
             // 로그인 액티비티로 이동하고 현재 액티비티 종료
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -93,9 +109,9 @@ class Graddy_main : AppCompatActivity() {
         val headerView = binding.navView.getHeaderView(0)
         val nicknameTextView = headerView.findViewById<android.widget.TextView>(R.id.nav_header_nickname)
         
-        // SharedPreferences에서 닉네임 가져오기
-        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
-        val nickname = sharedPreferences.getString("user_nickname", "유저의 닉네임")
+        // UserManager를 통해 현재 사용자 정보 가져오기
+        val currentUser = userManager.getCurrentUser()
+        val nickname = currentUser?.nickname ?: "유저의 닉네임"
         
         nicknameTextView?.text = nickname
     }

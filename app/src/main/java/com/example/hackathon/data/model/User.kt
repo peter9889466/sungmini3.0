@@ -7,7 +7,6 @@ data class User(
     val name: String,
     val nickname: String,
     val phone: String,
-    val email: String? = null,
     val createdAt: String? = null,
     val updatedAt: String? = null
 )
@@ -30,5 +29,4 @@ data class SignupRequest(
     val name: String,
     val nickname: String,
     val phone: String,
-    val email: String? = null
 )

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hackathon.databinding.FragmentStudyDetailBinding
 
@@ -82,6 +83,12 @@ class StudyDetailFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        // 뒤로 가기 버튼
+        binding.btnBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+        
+        // 댓글 추가 버튼
         binding.btnAddComment.setOnClickListener {
             val commentText = binding.editComment.text.toString().trim()
             if (commentText.isNotEmpty()) {

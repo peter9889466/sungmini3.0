@@ -17,9 +17,8 @@ data class UserTable(
     val name: String,                // 실명 (Not Null)
     val nickname: String,            // 닉네임 (Unique, Not Null)
     val phone: String,               // 전화번호 (Not Null)
-    val email: String?,              // 이메일 (Nullable)
     val created_at: String,          // 생성일시 (Timestamp)
-    val updated_at: String           // 수정일시 (Timestamp)
+    val updated_at: String,           // 수정일시 (Timestamp)
 )
 
 /**
@@ -35,7 +34,7 @@ data class StudyTable(
     val current_members: Int,        // 현재 인원 (Default: 1)
     val status: String,              // 상태 (RECRUITING, FULL, CLOSED)
     val created_at: String,          // 생성일시 (Timestamp)
-    val updated_at: String           // 수정일시 (Timestamp)
+    val updated_at: String,           // 수정일시 (Timestamp)
 )
 
 /**
@@ -47,7 +46,7 @@ data class CommentTable(
     val author_id: Long,             // 작성자 ID (Foreign Key -> users.id)
     val content: String,             // 댓글 내용 (Text, Not Null)
     val created_at: String,          // 생성일시 (Timestamp)
-    val updated_at: String           // 수정일시 (Timestamp)
+    val updated_at: String,          // 수정일시 (Timestamp)
 )
 
 /**
@@ -58,7 +57,7 @@ data class StudyMemberTable(
     val study_id: Long,              // 스터디 ID (Foreign Key -> studies.id)
     val user_id: Long,               // 사용자 ID (Foreign Key -> users.id)
     val role: String,                // 역할 (LEADER, MEMBER)
-    val joined_at: String            // 가입일시 (Timestamp)
+    val joined_at: String,            // 가입일시 (Timestamp)
 )
 
 /**
@@ -68,7 +67,7 @@ data class CategoryTable(
     val id: Long,                    // Primary Key, Auto Increment
     val name: String,                // 카테고리명 (Unique, Not Null)
     val description: String?,        // 카테고리 설명 (Nullable)
-    val created_at: String           // 생성일시 (Timestamp)
+    val created_at: String,           // 생성일시 (Timestamp)
 )
 
 /**

@@ -51,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:hint="이메일"
+                    android:hint="ID"
                     app:boxBackgroundColor="@color/light_beige"
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
@@ -61,10 +61,10 @@
                     app:hintTextColor="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/login_email"
+                        android:id="@+id/login_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:textColor="@color/text_primary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -74,7 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:hint="전화번호"
+                    android:hint="비밀번호"
                     app:boxBackgroundColor="@color/light_beige"
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
@@ -87,7 +87,7 @@
                         android:id="@+id/login_pw"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="phone"
+                        android:inputType="textPassword"
                         android:textColor="@color/text_primary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>

@@ -65,7 +65,7 @@
                         android:id="@+id/join_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
+                        android:inputType="text"
                         android:textColor="@color/text_primary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -88,7 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:inputType="textPersonName"
+                        android:inputType="textPassword"
                         android:textColor="@color/text_primary"
                         android:textSize="16sp" />
 
@@ -118,7 +118,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- 이메일 입력 -->
+                <!-- 닉네임 입력 -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,10 +133,10 @@
                     app:hintTextColor="@color/text_secondary">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/join_nick"
+                        android:id="@+id/join_nickname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:textColor="@color/text_primary"
                         android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>

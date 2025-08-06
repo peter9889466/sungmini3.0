@@ -46,9 +46,7 @@
                 android:orientation="vertical"
                 android:padding="24dp">
 
-                <!-- 이름 입력 -->
-
-                <!-- 이메일 입력 -->
+                <!-- 아이디 입력 -->
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
