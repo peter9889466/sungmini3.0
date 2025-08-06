@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.hackathon.data.DeleteResult
 import com.example.hackathon.data.JoinResult
 import com.example.hackathon.data.LeaveResult
@@ -58,6 +59,40 @@ class StudyDetailFragment : Fragment() {
         binding.recyclerViewComments.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = commentAdapter
+            isNestedScrollingEnabled = false
+            setHasFixedSize(false)
+        }
+    }
+    
+    // RecyclerView를 새로고침하고 높이를 조정하는 메서드
+    private fun refreshRecyclerView() {
+        binding.recyclerViewComments.post {
+            commentAdapter.notifyDataSetChanged()
+            
+            // RecyclerView의 높이를 내용에 맞게 조정
+            val layoutManager = binding.recyclerViewComments.layoutManager as LinearLayoutManager
+            binding.recyclerViewComments.viewTreeObserver.addOnGlobalLayoutListener(object : android.view.ViewTreeObserver.OnGlobalLayoutListener {
+                override fun onGlobalLayout() {
+                    binding.recyclerViewComments.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                    
+                    var totalHeight = 0
+                    for (i in 0 until commentAdapter.itemCount) {
+                        val view = layoutManager.findViewByPosition(i)
+                        if (view != null) {
+                            totalHeight += view.height
+                        } else {
+                            // 뷰가 아직 생성되지 않은 경우 예상 높이 사용
+                            val density = resources.displayMetrics.density
+                            totalHeight += (80 * density).toInt() // 80dp를 px로 변환
+                        }
+                    }
+                    
+                    // RecyclerView의 높이를 설정
+                    val layoutParams = binding.recyclerViewComments.layoutParams
+                    layoutParams.height = if (totalHeight > 0) totalHeight else ViewGroup.LayoutParams.WRAP_CONTENT
+                    binding.recyclerViewComments.layoutParams = layoutParams
+                }
+            })
         }
     }
 
@@ -99,8 +134,11 @@ class StudyDetailFragment : Fragment() {
             comments.add(Comment(author, content, timestamp))
         }
         
-        commentAdapter.notifyDataSetChanged()
+        commentAdapter.updateComments()
         binding.textCommentCount.text = "댓글 ${comments.size}개"
+        
+        // RecyclerView 새로고침
+        refreshRecyclerView()
     }
 
     private fun setupJoinButton() {
@@ -255,9 +293,10 @@ class StudyDetailFragment : Fragment() {
             
             // UI 업데이트
             comments.add(Comment(author, content, timestamp))
-            commentAdapter.notifyItemInserted(comments.size - 1)
             binding.textCommentCount.text = "댓글 ${comments.size}개"
-            binding.recyclerViewComments.scrollToPosition(comments.size - 1)
+            
+            // RecyclerView 새로고침 - 새 댓글이 추가되면 전체 높이가 자동으로 조정됨
+            refreshRecyclerView()
             
             Toast.makeText(context, "댓글이 추가되었습니다", Toast.LENGTH_SHORT).show()
         }

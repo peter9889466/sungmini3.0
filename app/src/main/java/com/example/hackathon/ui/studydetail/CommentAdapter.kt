@@ -9,7 +9,7 @@ import com.example.hackathon.R
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CommentAdapter(private val comments: List<Comment>) : 
+class CommentAdapter(private val comments: MutableList<Comment>) : 
     RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() {
 
     class CommentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -34,4 +34,9 @@ class CommentAdapter(private val comments: List<Comment>) :
     }
 
     override fun getItemCount(): Int = comments.size
+    
+    // 댓글 업데이트를 위한 메서드 추가
+    fun updateComments() {
+        notifyDataSetChanged()
+    }
 }
