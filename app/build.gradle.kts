@@ -33,13 +33,15 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    
     buildFeatures{
         viewBinding = true
     }
 }
 
 dependencies {
-
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    implementation("com.kizitonwose.calendar:view:2.4.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation(libs.androidx.core.ktx)
@@ -52,7 +54,9 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.cardview)
+    implementation(libs.volley)
     implementation(libs.androidx.mediarouter)
+    implementation(libs.androidx.recyclerview)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
